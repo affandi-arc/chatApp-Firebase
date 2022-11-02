@@ -1,12 +1,8 @@
-# Chat App using React Native Expo and Firebase
-
-cd into the just created project and install dependencies with yarn
-```
-cd ChatApp && yarn
-```
-
-Add your firebase backend config in the `firebase.js` file
-```
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import Constants from 'expo-constants';
+// Firebase config
 const firebaseConfig = {
   apiKey: Constants.manifest.extra.apiKey,
   authDomain: Constants.manifest.extra.authDomain,
@@ -16,9 +12,7 @@ const firebaseConfig = {
   appId: Constants.manifest.extra.appId,
   databaseURL: Constants.manifest.extra.databaseURL
 };
-```
-
-Run the project
-```
-expo start
-```
+// initialize firebase
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const database = getFirestore(app);
